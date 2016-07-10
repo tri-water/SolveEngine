@@ -17,11 +17,11 @@ double Bisection(double Target, double Low, double High, double Tolerance, T The
 		x = 0.5*(Low + High);
 		y = TheFunction(x);
 		if (StepCounter > 500) {
-			std::cout << "\n Iteration steps > 500, the result may not right.\nplease reset lower and higher guesses.\n";
+			std::cout << "\n Not converge, the result may not right.\nplease reset lower and higher guesses.\n";
 			break;
 		}
 		++StepCounter;
-	} while ((fabs(y - Target) > Tolerance));
+	} while (abs(fabs(y - Target) > Tolerance));
 
 	return x;	
 }

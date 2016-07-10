@@ -1,7 +1,7 @@
-#include "Bisection.h"
+#include "NewtonRaphson.h"
 #include <cmath>
 #include <iostream>
-#include "BSCallClass.h"
+#include "BSCall2.h"
 #include "BlackScholesFormulas.h"
 
 int main()
@@ -31,22 +31,20 @@ int main()
 	std::cout << "\nEnter d\n";
 	std::cin >> d;
 
-	double low, high;
+	double start;
 
-	std::cout << "\nEnter lower guess\n";
-	std::cin >> low;
-
-	std::cout << "\nEnter higher guess\n";
-	std::cin >> high;
+	std::cout << "\nEnter initial guess\n";
+	std::cin >> start;
 
 	double tolerance;
 
 	std::cout << "\nEnter Tolerance\n";
 	std::cin >> tolerance;
 
-	BSCall theCall(r, d, Expiry, Spot, Strike);
+	BSCall2 theCall(r, d, Expiry, Spot, Strike);
 
-	double vol = Bisection(Price, low, high, tolerance, theCall);
+	// Explicitly specify the template parameter
+	double vol = NewtonRaphson<BSCall2, &BSCall2::Price, &BSCall2::Vega>(Price, start, tolerance, theCall);
 	double PriceTwo = BlackScholesCall(Spot, Strike, r, d, vol, Expiry);
 
 	std::cout << "\n vol: " << vol << "\npricetwo: " << PriceTwo << "\n";
