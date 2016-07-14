@@ -24,6 +24,11 @@ public:
 		}
 	}
 
+	Wrapper(T* fDataPtr)
+	{
+		DataPtr = fDataPtr;
+	}
+
 	~Wrapper()
 	{
 		if (DataPtr != 0)
