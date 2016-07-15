@@ -8,47 +8,29 @@ using namespace std;
 
 int main()
 {
-	double Expiry, Strike, Spot, Vol, r;
-	unsigned long NumberOfPaths;
-
-	cout << "\nEnter expiry\n";
-	cin >> Expiry;
-	cout << "\nStrike\n";
-	cin >> Strike;
-	cout << "\nEnter spot\n";
-	cin >> Spot;
-	cout << "\nEnter vol\n";
-	cin >> Vol;
-	cout << "\nr\n";
-	cin >> r;
-	cout << "\nNumber of paths\n";
-	cin >> NumberOfPaths;
-
-	PayOffPut thePayOff(Strike);
-	VanillaOption theOption(thePayOff, Expiry);
-	ParametersConstant VolParam(Vol);
-	ParametersConstant rParam(r);
-	StatisticsMean gatherer;
-	ConvergenceTable gathererTwo(gatherer);
-
-	RandomParkMiller generator(1);
-	AntiThetic GenTwo(generator);
-	
-
-	SimpleMonteCarlo6(theOption, Spot, VolParam, rParam, NumberOfPaths, gathererTwo, GenTwo);
-
-	vector<vector<double>> results = gathererTwo.GetResultsSoFar();
-	cout << "\nFor the call price the results are  \n";
-
-	for (unsigned long i = 0; i < results.size(); ++i) {
-		for (unsigned long j = 0; j < results[i].size(); ++j) {
-			cout << results[i][j] << " ";
-		}
-		cout << "\n";
+	double S;
+	double K1, K2, K3;
+	std::cout << "spot\n";
+	std::cin >> S;
+	std::cout << "strike1\n";
+	std::cin >> K1;
+	std::cout << "strike2\n";
+	std::cin >> K2;
+	PayOffCall one(K1);
+	PayOffPut two(K2);
+	PayOff* p = one.clone();
+	Wrapper<PayOff> four = p;
+	{
+		PayOff* q = two.clone();
+		Wrapper<PayOff> five = q;
+		std::cout << "four :";
+		std::cout << (*four)(S)
+			<< " five :"
+			<< (*five)(S) << "\n";
+		four = five;
 	}
-
-	cin.ignore();
-	cin.get();
+	std::cout << " four :" << (*four)(S) << "\n";
+	char c;
+	std::cin >> c;
 	return 0;
-
 }

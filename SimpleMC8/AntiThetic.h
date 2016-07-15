@@ -1,6 +1,6 @@
 #pragma once
 #include "Random2.h"
-#include "Wrapper.h"
+#include "Wrapper2.h"
 
 class AntiThetic : public RandomBase
 {

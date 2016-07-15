@@ -32,14 +32,20 @@ public:
 	~Wrapper()
 	{
 		if (DataPtr != 0)
-			delete DataPtr
+			delete DataPtr;
 	}
 	
-	T& operator=(const Wrapper<T>& original)
+	Wrapper<T>& operator=(const Wrapper<T>& original)
 	{
+		
 		if (this != &original) {
-			delete DataPtr;
-			DataPtr = original.DataPtr != 0 ? original.DataPtr->clone() : 0;
+			// if clone() gets a throw out, the original DataPtr wouldn't delete
+			// Meet strong guaarantee
+			T* newPtr = (original.DataPtr != 0) ?
+				original.DataPtr->clone() : 0;
+			if (DataPtr != 0)
+				delete DataPtr;
+			DataPtr = newPtr;
 		}
 		
 		return *this;

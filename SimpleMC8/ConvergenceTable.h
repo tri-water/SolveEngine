@@ -1,6 +1,6 @@
 #pragma once
 #include "MCStatistics.h"
-#include "Wrapper.h"
+#include "Wrapper2.h"
 
 class ConvergenceTable : public StatisticsMC
 {
