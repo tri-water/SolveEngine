@@ -1,5 +1,5 @@
 #pragma once
-#include "PayOff2.h"
+#include "PayOff3.h"
 
 class PayOffDoubleDigital : public PayOff
 {

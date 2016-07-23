@@ -4,6 +4,7 @@
 #include <iostream>
 #include "ConvergenceTable.h"
 #include "ParkMiller.h"
+#include "Digital.h"
 using namespace std;
 
 int main()
@@ -16,8 +17,8 @@ int main()
 	std::cin >> K1;
 	std::cout << "strike2\n";
 	std::cin >> K2;
-	PayOffCall one(K1);
-	PayOffPut two(K2);
+	PayOffDigitalCall one(K1);
+	PayOffDigitalPut two(K2);
 	PayOff* p = one.clone();
 	Wrapper<PayOff> four = p;
 	{
@@ -30,7 +31,7 @@ int main()
 		four = five;
 	}
 	std::cout << " four :" << (*four)(S) << "\n";
-	char c;
-	std::cin >> c;
+	cin.ignore();
+	cin.get();
 	return 0;
 }
