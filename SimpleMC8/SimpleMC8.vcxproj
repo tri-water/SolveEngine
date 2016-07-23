@@ -112,6 +112,7 @@
   <ItemGroup>
     <ClInclude Include="AntiThetic.h" />
     <ClInclude Include="ConvergenceTable.h" />
+    <ClInclude Include="DoubleDigital.h" />
     <ClInclude Include="MCStatistics.h" />
     <ClInclude Include="Normals.h" />
     <ClInclude Include="Parameters.h" />
@@ -126,6 +127,7 @@
   <ItemGroup>
     <ClCompile Include="AntiThetic.cpp" />
     <ClCompile Include="ConvergenceTable.cpp" />
+    <ClCompile Include="DoubleDigital.cpp" />
     <ClCompile Include="MCStatistics.cpp" />
     <ClCompile Include="Normals.cpp" />
     <ClCompile Include="Parameters.cpp" />
